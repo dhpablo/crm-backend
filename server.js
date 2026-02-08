@@ -12,6 +12,10 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
+// Servir el frontend en la raíz
+   app.get('/', (req, res) => {
+     res.sendFile(__dirname + '/crm-frontend.html');
+   });
 
 // Postgres pool (Railway: usa DATABASE_URL privada)
 const pool = new Pool({
