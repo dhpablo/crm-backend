@@ -5,310 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM Captación Inmobiliaria</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f5f7fa;
-            color: #2d3748;
-        }
-
-        .config-banner {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .config-banner input {
-            flex: 1;
-            padding: 0.5rem;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-        }
-
-        .config-banner button {
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .header h1 {
-            font-size: 1.75rem;
-            font-weight: 600;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .tab {
-            padding: 0.75rem 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            color: #64748b;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-
-        .tab:hover {
-            color: #667eea;
-        }
-
-        .tab.active {
-            color: #667eea;
-            border-bottom-color: #667eea;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .dashboard-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border-left: 4px solid #667eea;
-        }
-
-        .stat-card h3 {
-            font-size: 0.875rem;
-            color: #64748b;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .stat-card .number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1e293b;
-        }
-
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s;
-        }
-
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #5568d3;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #e2e8f0;
-            color: #475569;
-        }
-
-        .btn-secondary:hover {
-            background: #cbd5e1;
-        }
-
-        .btn-success {
-            background: #10b981;
-            color: white;
-        }
-
-        .btn-danger {
-            background: #ef4444;
-            color: white;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #374151;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            overflow-y: auto;
-        }
-
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .modal-content {
-            background: white;
-            border-radius: 12px;
-            max-width: 800px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 2rem;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h2 {
-            font-size: 1.5rem;
-            color: #1e293b;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #64748b;
-            padding: 0.5rem;
-        }
-
-        .property-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .property-item {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .property-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-
-        .property-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 1rem;
-        }
-
-        .property-title {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #1e293b;
-            margin-bottom: 0.25rem;
-        }
-
-        .property-address {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .property-status {
-            padding: 0.375rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #2d3748; }
+        
+        .config-banner { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; }
+        .config-banner input { flex: 1; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px; }
+        .config-banner button { padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .header h1 { font-size: 1.75rem; font-weight: 600; }
+        
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 2px solid #e2e8f0; }
+        .tab { padding: 0.75rem 1.5rem; background: none; border: none; cursor: pointer; font-size: 1rem; color: #64748b; border-bottom: 3px solid transparent; transition: all 0.3s; font-weight: 500; }
+        .tab:hover { color: #667eea; }
+        .tab.active { color: #667eea; border-bottom-color: #667eea; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .stat-card h3 { font-size: 0.875rem; color: #64748b; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-card .number { font-size: 2rem; font-weight: 700; color: #1e293b; }
+        
+        .btn { padding: 0.75rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.3s; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
+        .btn-secondary { background: #e2e8f0; color: #475569; }
+        .btn-secondary:hover { background: #cbd5e1; }
+        .btn-danger { background: #ef4444; color: white; }
+        
+        .card { background: white; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); padding: 1.5rem; margin-bottom: 1.5rem; }
+        
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: #374151; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        
+        .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; overflow-y: auto; }
+        .modal.active { display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        .modal-content { background: white; border-radius: 12px; max-width: 800px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .modal-header h2 { font-size: 1.5rem; color: #1e293b; }
+        .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b; padding: 0.5rem; }
+        
+        .property-list, .agent-list { display: grid; gap: 1rem; }
+        .property-item, .agent-item { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1.5rem; cursor: pointer; transition: all 0.3s; }
+        .property-item:hover, .agent-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        
+        .property-header, .agent-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem; }
+        .property-title, .agent-name { font-size: 1.125rem; font-weight: 600; color: #1e293b; margin-bottom: 0.25rem; }
+        .property-address { color: #64748b; font-size: 0.9rem; }
+        
+        .property-status { padding: 0.375rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
         .status-nueva { background: #dbeafe; color: #1e40af; }
         .status-pendiente { background: #fef3c7; color: #92400e; }
         .status-contactada { background: #e0e7ff; color: #4338ca; }
@@ -316,176 +70,37 @@
         .status-presentada { background: #ddd6fe; color: #5b21b6; }
         .status-cerrada { background: #d1fae5; color: #065f46; }
         .status-descartada { background: #fee2e2; color: #991b1b; }
-
-        .property-details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .property-detail {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .property-detail-label {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-bottom: 0.25rem;
-        }
-
-        .property-detail-value {
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .filters {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        .filter-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            align-items: end;
-        }
-
-        .alerts-section {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-
-        .alert-item {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #fde68a;
-        }
-
-        .alert-item:last-child {
-            border-bottom: none;
-        }
-
-        .rentability-calculator {
-            background: #f0fdf4;
-            border: 2px solid #10b981;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .rentability-result {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .rentability-item {
-            text-align: center;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-        }
-
-        .rentability-label {
-            font-size: 0.8rem;
-            color: #64748b;
-            margin-bottom: 0.5rem;
-        }
-
-        .rentability-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #10b981;
-        }
-
-        .agent-list {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .agent-item {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .agent-item:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .agent-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .agent-name {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: #1e293b;
-        }
-
-        .last-contact {
-            font-size: 0.85rem;
-            color: #64748b;
-        }
-
-        .contact-warning {
-            color: #ef4444;
-            font-weight: 500;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: #64748b;
-        }
-
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            color: #64748b;
-        }
-
-        .error-message {
-            background: #fee2e2;
-            border-left: 4px solid #ef4444;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            color: #991b1b;
-        }
-
+        
+        .property-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .property-detail { display: flex; flex-direction: column; }
+        .property-detail-label { font-size: 0.8rem; color: #64748b; margin-bottom: 0.25rem; }
+        .property-detail-value { font-weight: 600; color: #1e293b; }
+        
+        .filters { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .filter-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; align-items: end; }
+        
+        .alerts-section { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem 1.5rem; border-radius: 8px; margin-bottom: 2rem; }
+        .alert-item { padding: 0.5rem 0; border-bottom: 1px solid #fde68a; }
+        .alert-item:last-child { border-bottom: none; }
+        
+        .rentability-calculator { background: #f0fdf4; border: 2px solid #10b981; border-radius: 12px; padding: 1.5rem; margin-top: 1rem; }
+        .rentability-result { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .rentability-item { text-align: center; padding: 1rem; background: white; border-radius: 8px; }
+        .rentability-label { font-size: 0.8rem; color: #64748b; margin-bottom: 0.5rem; }
+        .rentability-value { font-size: 1.5rem; font-weight: 700; color: #10b981; }
+        
+        .last-contact { font-size: 0.85rem; color: #64748b; }
+        .contact-warning { color: #ef4444; font-weight: 500; }
+        
+        .empty-state { text-align: center; padding: 3rem; color: #64748b; }
+        .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+        
+        .error-message { background: #fee2e2; border-left: 4px solid #ef4444; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; color: #991b1b; }
+        
         @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .dashboard-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-row,
-            .filter-row {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 1rem; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .form-row, .filter-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -511,42 +126,22 @@
             <button class="tab" onclick="switchTab('inversores')">💼 Inversores</button>
         </div>
 
-        <!-- DASHBOARD -->
         <div id="dashboard" class="tab-content active">
             <div class="dashboard-grid">
-                <div class="stat-card">
-                    <h3>Propiedades Totales</h3>
-                    <div class="number" id="stat-total">-</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Pendientes Contactar</h3>
-                    <div class="number" id="stat-pendientes">-</div>
-                </div>
-                <div class="stat-card">
-                    <h3>En Negociación</h3>
-                    <div class="number" id="stat-negociacion">-</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Cerradas Este Mes</h3>
-                    <div class="number" id="stat-cerradas">-</div>
-                </div>
+                <div class="stat-card"><h3>Propiedades Totales</h3><div class="number" id="stat-total">-</div></div>
+                <div class="stat-card"><h3>Pendientes Contactar</h3><div class="number" id="stat-pendientes">-</div></div>
+                <div class="stat-card"><h3>En Negociación</h3><div class="number" id="stat-negociacion">-</div></div>
+                <div class="stat-card"><h3>Cerradas Este Mes</h3><div class="number" id="stat-cerradas">-</div></div>
             </div>
-
             <div id="alerts-container"></div>
-
-            <div class="card">
-                <h2 style="margin-bottom: 1rem;">Propiedades Recientes</h2>
-                <div id="recent-properties"></div>
-            </div>
+            <div class="card"><h2 style="margin-bottom: 1rem;">Propiedades Recientes</h2><div id="recent-properties"></div></div>
         </div>
 
-        <!-- PROPIEDADES -->
         <div id="propiedades" class="tab-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <h2>Gestión de Propiedades</h2>
                 <button class="btn btn-primary" onclick="openPropertyModal()">+ Nueva Propiedad</button>
             </div>
-
             <div class="filters">
                 <div class="filter-row">
                     <div class="form-group">
@@ -564,9 +159,7 @@
                     </div>
                     <div class="form-group">
                         <label>Inversor</label>
-                        <select id="filter-inversor" onchange="filterProperties()">
-                            <option value="">Todos</option>
-                        </select>
+                        <select id="filter-inversor" onchange="filterProperties()"><option value="">Todos</option></select>
                     </div>
                     <div class="form-group">
                         <label>Buscar</label>
@@ -574,36 +167,258 @@
                     </div>
                 </div>
             </div>
-
             <div class="property-list" id="properties-list"></div>
         </div>
 
-        <!-- AGENTES -->
         <div id="agentes" class="tab-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <h2>Agentes Inmobiliarios</h2>
                 <button class="btn btn-primary" onclick="openAgentModal()">+ Nuevo Agente</button>
             </div>
-
             <div class="agent-list" id="agents-list"></div>
         </div>
 
-        <!-- INVERSORES -->
         <div id="inversores" class="tab-content">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                 <h2>Inversores</h2>
                 <button class="btn btn-primary" onclick="openInvestorModal()">+ Nuevo Inversor</button>
             </div>
-
             <div class="agent-list" id="investors-list"></div>
         </div>
     </div>
 
-    <!-- MODALS (igual que antes, solo cambiaré el JavaScript) -->
-    <!-- [Los modales son iguales, los incluiré después en el script] -->
+    <!-- MODAL INVERSOR -->
+    <div id="investorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="investor-modal-title">Nuevo Inversor</h2>
+                <button class="close-btn" onclick="closeInvestorModal()">&times;</button>
+            </div>
+            <form id="investorForm" onsubmit="saveInvestor(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" id="inv-nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="inv-telefono">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="inv-email">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Presupuesto Mínimo (€)</label>
+                        <input type="number" id="inv-presupuesto-min">
+                    </div>
+                    <div class="form-group">
+                        <label>Presupuesto Máximo (€)</label>
+                        <input type="number" id="inv-presupuesto-max">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Zonas de Interés</label>
+                    <input type="text" id="inv-zonas" placeholder="Madrid Centro, Salamanca...">
+                </div>
+                <div class="form-group">
+                    <label>Tipos de Propiedad</label>
+                    <input type="text" id="inv-tipos" placeholder="Pisos, Locales...">
+                </div>
+                <div class="form-group">
+                    <label>Rentabilidad Mínima (%)</label>
+                    <input type="number" step="0.1" id="inv-rentabilidad-min">
+                </div>
+                <div class="form-group">
+                    <label>Notas</label>
+                    <textarea id="inv-notas" placeholder="Preferencias, observaciones..."></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeInvestorModal()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="delete-investor-btn" style="margin-left: auto; display: none;" onclick="deleteInvestor()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL AGENTE -->
+    <div id="agentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="agent-modal-title">Nuevo Agente</h2>
+                <button class="close-btn" onclick="closeAgentModal()">&times;</button>
+            </div>
+            <form id="agentForm" onsubmit="saveAgent(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" id="agent-nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Inmobiliaria</label>
+                        <input type="text" id="agent-inmobiliaria">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="tel" id="agent-telefono">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="agent-email">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp</label>
+                    <input type="tel" id="agent-whatsapp">
+                </div>
+                <div class="form-group">
+                    <label>Última Fecha de Contacto</label>
+                    <input type="date" id="agent-ultimo-contacto">
+                </div>
+                <div class="form-group">
+                    <label>Notas</label>
+                    <textarea id="agent-notas" placeholder="Preferencias, forma de trabajar..."></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAgentModal()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="delete-agent-btn" style="margin-left: auto; display: none;" onclick="deleteAgent()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL PROPIEDAD -->
+    <div id="propertyModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="property-modal-title">Nueva Propiedad</h2>
+                <button class="close-btn" onclick="closePropertyModal()">&times;</button>
+            </div>
+            <form id="propertyForm" onsubmit="saveProperty(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Dirección *</label>
+                        <input type="text" id="prop-direccion" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ciudad *</label>
+                        <input type="text" id="prop-ciudad" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tipo *</label>
+                        <select id="prop-tipo" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="piso">Piso</option>
+                            <option value="casa">Casa</option>
+                            <option value="chalet">Chalet</option>
+                            <option value="local">Local</option>
+                            <option value="terreno">Terreno</option>
+                            <option value="oficina">Oficina</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Precio (€) *</label>
+                        <input type="number" id="prop-precio" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Metros² *</label>
+                        <input type="number" id="prop-metros" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Portal</label>
+                        <input type="text" id="prop-portal" placeholder="Idealista...">
+                    </div>
+                    <div class="form-group">
+                        <label>Enlace</label>
+                        <input type="url" id="prop-enlace">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Agente</label>
+                        <select id="prop-agente"><option value="">Seleccionar...</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Estado *</label>
+                        <select id="prop-estado" required>
+                            <option value="nueva">Nueva</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="contactada">Contactada</option>
+                            <option value="negociacion">Negociación</option>
+                            <option value="presentada">Presentada</option>
+                            <option value="cerrada">Cerrada</option>
+                            <option value="descartada">Descartada</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Inversor</label>
+                    <select id="prop-inversor"><option value="">Sin asignar</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Notas</label>
+                    <textarea id="prop-notas"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Resumen Contactos</label>
+                    <textarea id="prop-resumen-contactos"></textarea>
+                </div>
+                <h3 style="margin: 1.5rem 0 1rem; color: #667eea;">Rentabilidad</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Alquiler Mensual (€)</label>
+                        <input type="number" id="prop-alquiler" oninput="calculateRentability()">
+                    </div>
+                    <div class="form-group">
+                        <label>Gastos Mensuales (€)</label>
+                        <input type="number" id="prop-gastos" value="0" oninput="calculateRentability()">
+                    </div>
+                    <div class="form-group">
+                        <label>Rentabilidad Objetivo (%)</label>
+                        <input type="number" step="0.1" id="prop-rentabilidad-objetivo" value="7" oninput="calculateRentability()">
+                    </div>
+                </div>
+                <div id="rentability-results" class="rentability-calculator" style="display: none;">
+                    <h4 style="margin-bottom: 1rem; color: #10b981;">Resultados</h4>
+                    <div class="rentability-result">
+                        <div class="rentability-item">
+                            <div class="rentability-label">Precio Máx. Negociar</div>
+                            <div class="rentability-value" id="calc-precio-max">-</div>
+                        </div>
+                        <div class="rentability-item">
+                            <div class="rentability-label">Rentabilidad Actual</div>
+                            <div class="rentability-value" id="calc-rentabilidad-actual">-</div>
+                        </div>
+                        <div class="rentability-item">
+                            <div class="rentability-label">Diferencia</div>
+                            <div class="rentability-value" id="calc-diferencia">-</div>
+                        </div>
+                        <div class="rentability-item">
+                            <div class="rentability-label">Ingreso Neto Anual</div>
+                            <div class="rentability-value" id="calc-ingreso-neto">-</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closePropertyModal()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="delete-property-btn" style="margin-left: auto; display: none;" onclick="deleteProperty()">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <script>
-        // Configuration
         let API_URL = localStorage.getItem('crm_api_url') || '';
         let properties = [];
         let agents = [];
@@ -612,233 +427,138 @@
         let currentEditingAgent = null;
         let currentEditingInvestor = null;
 
-        // Show/hide config
-        if (API_URL) {
-            document.getElementById('config-banner').style.display = 'none';
-        }
+        if (API_URL) document.getElementById('config-banner').style.display = 'none';
         document.getElementById('api-url-input').value = API_URL;
 
         function saveApiUrl() {
             API_URL = document.getElementById('api-url-input').value.trim();
-            if (!API_URL) {
-                showError('Por favor ingresa una URL válida');
-                return;
-            }
+            if (!API_URL) return showError('URL inválida');
             localStorage.setItem('crm_api_url', API_URL);
             document.getElementById('config-banner').style.display = 'none';
             initialize();
         }
 
-        function hideConfig() {
-            document.getElementById('config-banner').style.display = 'none';
-        }
+        function hideConfig() { document.getElementById('config-banner').style.display = 'none'; }
+        function showConfig() { document.getElementById('config-banner').style.display = 'flex'; }
 
-        function showConfig() {
-            document.getElementById('config-banner').style.display = 'flex';
-        }
-
-        // Error handling
         function showError(message) {
             const container = document.getElementById('error-container');
             container.innerHTML = `<div class="error-message">❌ ${message}</div>`;
             setTimeout(() => container.innerHTML = '', 5000);
         }
 
-        // API calls
         async function apiCall(endpoint, method = 'GET', data = null) {
-            if (!API_URL) {
-                showError('Por favor configura la URL del backend primero');
-                showConfig();
-                return null;
-            }
-
+            if (!API_URL) { showError('Configura el backend primero'); showConfig(); return null; }
             try {
-                const options = {
-                    method,
-                    headers: { 'Content-Type': 'application/json' }
-                };
-                
-                if (data) {
-                    options.body = JSON.stringify(data);
-                }
-
+                const options = { method, headers: { 'Content-Type': 'application/json' } };
+                if (data) options.body = JSON.stringify(data);
                 const response = await fetch(`${API_URL}${endpoint}`, options);
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 return await response.json();
             } catch (error) {
-                console.error('API Error:', error);
-                showError(`Error de conexión: ${error.message}`);
+                showError(`Error: ${error.message}`);
                 return null;
             }
         }
 
-        // Data loading
         async function loadProperties() {
             const result = await apiCall('/api/properties');
-            if (result && result.success) {
-                properties = result.data;
-                return true;
-            }
-            return false;
+            if (result?.success) properties = result.data;
         }
 
         async function loadAgents() {
             const result = await apiCall('/api/agents');
-            if (result && result.success) {
-                agents = result.data;
-                updateAgentSelects();
-                return true;
-            }
-            return false;
+            if (result?.success) { agents = result.data; updateAgentSelects(); }
         }
 
         async function loadInvestors() {
             const result = await apiCall('/api/investors');
-            if (result && result.success) {
-                investors = result.data;
-                updateInvestorSelects();
-                return true;
-            }
-            return false;
+            if (result?.success) { investors = result.data; updateInvestorSelects(); }
         }
 
         async function loadStats() {
             const result = await apiCall('/api/stats');
-            if (result && result.success) {
-                const stats = result.data;
-                document.getElementById('stat-total').textContent = stats.total;
-                document.getElementById('stat-pendientes').textContent = stats.pendientes;
-                document.getElementById('stat-negociacion').textContent = stats.negociacion;
-                document.getElementById('stat-cerradas').textContent = stats.cerradas_mes;
+            if (result?.success) {
+                document.getElementById('stat-total').textContent = result.data.total;
+                document.getElementById('stat-pendientes').textContent = result.data.pendientes;
+                document.getElementById('stat-negociacion').textContent = result.data.negociacion;
+                document.getElementById('stat-cerradas').textContent = result.data.cerradas_mes;
             }
         }
 
-        // Initialize
         async function initialize() {
-            await Promise.all([
-                loadProperties(),
-                loadAgents(),
-                loadInvestors(),
-                loadStats()
-            ]);
+            await Promise.all([loadProperties(), loadAgents(), loadInvestors(), loadStats()]);
             renderDashboard();
             renderProperties();
             renderAgents();
             renderInvestors();
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            if (API_URL) {
-                initialize();
-            }
-        });
+        document.addEventListener('DOMContentLoaded', () => { if (API_URL) initialize(); });
 
-        // Tab switching
         function switchTab(tabName) {
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-            
             event.target.classList.add('active');
             document.getElementById(tabName).classList.add('active');
         }
 
-        // Dashboard rendering
         function renderDashboard() {
             loadStats();
             renderAlerts();
-            
             const recentProps = properties.slice(-5).reverse();
-            const recentContainer = document.getElementById('recent-properties');
-            
-            if (recentProps.length === 0) {
-                recentContainer.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📋</div><p>No hay propiedades todavía. ¡Añade tu primera propiedad!</p></div>';
-            } else {
-                recentContainer.innerHTML = recentProps.map(prop => createPropertyCard(prop)).join('');
-            }
+            const container = document.getElementById('recent-properties');
+            container.innerHTML = recentProps.length === 0 ? 
+                '<div class="empty-state"><div class="empty-state-icon">📋</div><p>No hay propiedades</p></div>' :
+                recentProps.map(createPropertyCard).join('');
         }
 
         function renderAlerts() {
             const alerts = [];
             const today = new Date();
             const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
-
             agents.forEach(agent => {
                 if (agent.ultimo_contacto) {
                     const lastContact = new Date(agent.ultimo_contacto);
                     if (lastContact < twoWeeksAgo) {
-                        const daysSince = Math.floor((today - lastContact) / (1000 * 60 * 60 * 24));
-                        alerts.push(`⚠️ Hace ${daysSince} días que no contactas con ${agent.nombre} (${agent.inmobiliaria || 'Agente independiente'})`);
+                        const days = Math.floor((today - lastContact) / (1000 * 60 * 60 * 24));
+                        alerts.push(`⚠️ Hace ${days} días sin contactar: ${agent.nombre}`);
                     }
                 }
             });
-
             const pendientes = properties.filter(p => p.estado === 'pendiente').length;
-            if (pendientes > 0) {
-                alerts.push(`📞 Tienes ${pendientes} propiedad(es) pendiente(s) de contactar`);
-            }
-
-            const alertsContainer = document.getElementById('alerts-container');
-            if (alerts.length > 0) {
-                alertsContainer.innerHTML = `
-                    <div class="alerts-section">
-                        <h3 style="margin-bottom: 0.75rem; color: #92400e;">🔔 Recordatorios</h3>
-                        ${alerts.map(alert => `<div class="alert-item">${alert}</div>`).join('')}
-                    </div>
-                `;
-            } else {
-                alertsContainer.innerHTML = '';
-            }
+            if (pendientes > 0) alerts.push(`📞 ${pendientes} propiedad(es) pendiente(s)`);
+            
+            const container = document.getElementById('alerts-container');
+            container.innerHTML = alerts.length > 0 ? 
+                `<div class="alerts-section"><h3 style="margin-bottom: 0.75rem; color: #92400e;">🔔 Recordatorios</h3>${alerts.map(a => `<div class="alert-item">${a}</div>`).join('')}</div>` : '';
         }
 
-        // Properties rendering
         function filterProperties() {
-            const estadoFilter = document.getElementById('filter-estado').value;
-            const inversorFilter = document.getElementById('filter-inversor').value;
-            const searchFilter = document.getElementById('filter-search').value.toLowerCase();
-
-            let filtered = properties.filter(prop => {
-                if (estadoFilter && prop.estado !== estadoFilter) return false;
-                if (inversorFilter && prop.inversor_id !== inversorFilter) return false;
-                if (searchFilter) {
-                    const searchText = `${prop.direccion} ${prop.ciudad}`.toLowerCase();
-                    if (!searchText.includes(searchFilter)) return false;
-                }
+            const estado = document.getElementById('filter-estado').value;
+            const inversor = document.getElementById('filter-inversor').value;
+            const search = document.getElementById('filter-search').value.toLowerCase();
+            const filtered = properties.filter(p => {
+                if (estado && p.estado !== estado) return false;
+                if (inversor && p.inversor_id !== inversor) return false;
+                if (search && !`${p.direccion} ${p.ciudad}`.toLowerCase().includes(search)) return false;
                 return true;
             });
-
             renderPropertiesList(filtered);
         }
 
-        function renderProperties() {
-            filterProperties();
-        }
+        function renderProperties() { filterProperties(); }
 
-        function renderPropertiesList(propsList) {
+        function renderPropertiesList(list) {
             const container = document.getElementById('properties-list');
-            if (propsList.length === 0) {
-                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>No se encontraron propiedades</p></div>';
-            } else {
-                container.innerHTML = propsList.map(prop => createPropertyCard(prop)).join('');
-            }
+            container.innerHTML = list.length === 0 ? 
+                '<div class="empty-state"><div class="empty-state-icon">🔍</div><p>No hay propiedades</p></div>' :
+                list.map(createPropertyCard).join('');
         }
 
         function createPropertyCard(prop) {
-            const estadoLabels = {
-                'nueva': 'Nueva',
-                'pendiente': 'Pendiente de Contactar',
-                'contactada': 'Contactada',
-                'negociacion': 'En Negociación',
-                'presentada': 'Presentada al Inversor',
-                'cerrada': 'Cerrada',
-                'descartada': 'Descartada'
-            };
-
-            const inversorName = prop.inversor_id ? investors.find(i => i.id === prop.inversor_id)?.nombre || 'Desconocido' : 'Sin asignar';
-            
+            const estados = {nueva:'Nueva',pendiente:'Pendiente de Contactar',contactada:'Contactada',negociacion:'En Negociación',presentada:'Presentada al Inversor',cerrada:'Cerrada',descartada:'Descartada'};
+            const inv = prop.inversor_id ? investors.find(i => i.id === prop.inversor_id)?.nombre || 'Desconocido' : 'Sin asignar';
             return `
                 <div class="property-item" onclick="editProperty('${prop.id}')">
                     <div class="property-header">
@@ -846,88 +566,63 @@
                             <div class="property-title">${prop.direccion}</div>
                             <div class="property-address">${prop.ciudad}</div>
                         </div>
-                        <span class="property-status status-${prop.estado}">${estadoLabels[prop.estado]}</span>
+                        <span class="property-status status-${prop.estado}">${estados[prop.estado]}</span>
                     </div>
                     <div class="property-details">
-                        <div class="property-detail">
-                            <span class="property-detail-label">Tipo</span>
-                            <span class="property-detail-value">${prop.tipo.charAt(0).toUpperCase() + prop.tipo.slice(1)}</span>
-                        </div>
-                        <div class="property-detail">
-                            <span class="property-detail-label">Precio</span>
-                            <span class="property-detail-value">${formatCurrency(prop.precio)}</span>
-                        </div>
-                        <div class="property-detail">
-                            <span class="property-detail-label">Metros²</span>
-                            <span class="property-detail-value">${prop.metros} m²</span>
-                        </div>
-                        <div class="property-detail">
-                            <span class="property-detail-label">Inversor</span>
-                            <span class="property-detail-value">${inversorName}</span>
-                        </div>
+                        <div class="property-detail"><span class="property-detail-label">Tipo</span><span class="property-detail-value">${prop.tipo}</span></div>
+                        <div class="property-detail"><span class="property-detail-label">Precio</span><span class="property-detail-value">${formatCurrency(prop.precio)}</span></div>
+                        <div class="property-detail"><span class="property-detail-label">m²</span><span class="property-detail-value">${prop.metros}</span></div>
+                        <div class="property-detail"><span class="property-detail-label">Inversor</span><span class="property-detail-value">${inv}</span></div>
                     </div>
                 </div>
             `;
         }
 
-        // Agents rendering  
         function renderAgents() {
             const container = document.getElementById('agents-list');
-            
             if (agents.length === 0) {
-                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><p>No hay agentes. ¡Añade el primero!</p></div>';
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">👥</div><p>No hay agentes</p></div>';
                 return;
             }
-
             const today = new Date();
             const twoWeeksAgo = new Date(today.getTime() - 14 * 24 * 60 * 60 * 1000);
-
             container.innerHTML = agents.map(agent => {
-                let lastContactText = 'Sin contacto';
-                let isWarning = false;
-
+                let contactText = 'Sin contacto';
+                let warning = false;
                 if (agent.ultimo_contacto) {
-                    const lastContact = new Date(agent.ultimo_contacto);
-                    const daysSince = Math.floor((today - lastContact) / (1000 * 60 * 60 * 24));
-                    
-                    if (daysSince === 0) lastContactText = 'Hoy';
-                    else if (daysSince === 1) lastContactText = 'Ayer';
-                    else lastContactText = `Hace ${daysSince} días`;
-
-                    isWarning = lastContact < twoWeeksAgo;
+                    const last = new Date(agent.ultimo_contacto);
+                    const days = Math.floor((today - last) / (1000 * 60 * 60 * 24));
+                    contactText = days === 0 ? 'Hoy' : days === 1 ? 'Ayer' : `Hace ${days} días`;
+                    warning = last < twoWeeksAgo;
                 }
-
                 return `
                     <div class="agent-item" onclick="editAgent('${agent.id}')">
                         <div class="agent-header">
                             <div>
                                 <div class="agent-name">${agent.nombre}</div>
-                                ${agent.inmobiliaria ? `<div style="color: #64748b; font-size: 0.9rem;">${agent.inmobiliaria}</div>` : ''}
+                                ${agent.inmobiliaria ? `<div style="color: #64748b;">${agent.inmobiliaria}</div>` : ''}
                             </div>
-                            <div class="last-contact ${isWarning ? 'contact-warning' : ''}">${lastContactText}</div>
+                            <div class="last-contact ${warning ? 'contact-warning' : ''}">${contactText}</div>
                         </div>
                     </div>
                 `;
             }).join('');
         }
 
-        // Investors rendering
         function renderInvestors() {
             const container = document.getElementById('investors-list');
-            
             if (investors.length === 0) {
-                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💼</div><p>No hay inversores. ¡Añade el primero!</p></div>';
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">💼</div><p>No hay inversores</p></div>';
                 return;
             }
-
-            container.innerHTML = investors.map(investor => {
-                const propCount = properties.filter(p => p.inversor_id === investor.id).length;
+            container.innerHTML = investors.map(inv => {
+                const count = properties.filter(p => p.inversor_id === inv.id).length;
                 return `
-                    <div class="agent-item" onclick="editInvestor('${investor.id}')">
+                    <div class="agent-item" onclick="editInvestor('${inv.id}')">
                         <div class="agent-header">
                             <div>
-                                <div class="agent-name">${investor.nombre}</div>
-                                <div style="color: #64748b; font-size: 0.9rem;">${propCount} propiedad(es) asignada(s)</div>
+                                <div class="agent-name">${inv.nombre}</div>
+                                <div style="color: #64748b;">${count} propiedad(es)</div>
                             </div>
                         </div>
                     </div>
@@ -935,54 +630,263 @@
             }).join('');
         }
 
-        // Utility functions
         function formatCurrency(amount) {
-            return new Intl.NumberFormat('es-ES', { 
-                style: 'currency', 
-                currency: 'EUR',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(amount);
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0 }).format(amount);
         }
 
         function updateAgentSelects() {
-            // Implementation similar to original
+            const select = document.getElementById('prop-agente');
+            if (!select) return;
+            const val = select.value;
+            select.innerHTML = '<option value="">Seleccionar...</option>' + agents.map(a => `<option value="${a.id}">${a.nombre}</option>`).join('');
+            select.value = val;
         }
 
         function updateInvestorSelects() {
-            const selects = [document.getElementById('filter-inversor')];
-            selects.forEach(select => {
+            ['filter-inversor', 'prop-inversor'].forEach(id => {
+                const select = document.getElementById(id);
                 if (!select) return;
-                const currentValue = select.value;
-                select.innerHTML = '<option value="">Todos</option>' +
-                    investors.map(inv => `<option value="${inv.id}">${inv.nombre}</option>`).join('');
-                select.value = currentValue;
+                const val = select.value;
+                const isFilter = id === 'filter-inversor';
+                select.innerHTML = (isFilter ? '<option value="">Todos</option>' : '<option value="">Sin asignar</option>') +
+                    investors.map(i => `<option value="${i.id}">${i.nombre}</option>`).join('');
+                select.value = val;
             });
         }
 
-        // Modal functions - estos los completaré en la siguiente iteración
-        function openPropertyModal(id = null) {
-            alert('Modal de propiedad - a implementar con formulario completo');
-        }
-
-        function editProperty(id) {
-            openPropertyModal(id);
-        }
-
-        function openAgentModal(id = null) {
-            alert('Modal de agente - a implementar');
-        }
-
-        function editAgent(id) {
-            openAgentModal(id);
-        }
-
+        // MODALS - INVESTOR
         function openInvestorModal(id = null) {
-            alert('Modal de inversor - a implementar');
+            currentEditingInvestor = id;
+            document.getElementById('investor-modal-title').textContent = id ? 'Editar Inversor' : 'Nuevo Inversor';
+            if (id) {
+                const inv = investors.find(i => i.id === id);
+                document.getElementById('inv-nombre').value = inv.nombre;
+                document.getElementById('inv-telefono').value = inv.telefono || '';
+                document.getElementById('inv-email').value = inv.email || '';
+                document.getElementById('inv-presupuesto-min').value = inv.presupuesto_min || '';
+                document.getElementById('inv-presupuesto-max').value = inv.presupuesto_max || '';
+                document.getElementById('inv-zonas').value = inv.zonas || '';
+                document.getElementById('inv-tipos').value = inv.tipos || '';
+                document.getElementById('inv-rentabilidad-min').value = inv.rentabilidad_min || '';
+                document.getElementById('inv-notas').value = inv.notas || '';
+                document.getElementById('delete-investor-btn').style.display = 'block';
+            } else {
+                document.getElementById('investorForm').reset();
+                document.getElementById('delete-investor-btn').style.display = 'none';
+            }
+            document.getElementById('investorModal').classList.add('active');
         }
 
-        function editInvestor(id) {
-            openInvestorModal(id);
+        function closeInvestorModal() {
+            document.getElementById('investorModal').classList.remove('active');
+            currentEditingInvestor = null;
+        }
+
+        function editInvestor(id) { openInvestorModal(id); }
+
+        async function saveInvestor(event) {
+            event.preventDefault();
+            const data = {
+                nombre: document.getElementById('inv-nombre').value,
+                telefono: document.getElementById('inv-telefono').value || null,
+                email: document.getElementById('inv-email').value || null,
+                presupuesto_min: parseFloat(document.getElementById('inv-presupuesto-min').value) || null,
+                presupuesto_max: parseFloat(document.getElementById('inv-presupuesto-max').value) || null,
+                zonas: document.getElementById('inv-zonas').value || null,
+                tipos: document.getElementById('inv-tipos').value || null,
+                rentabilidad_min: parseFloat(document.getElementById('inv-rentabilidad-min').value) || null,
+                notas: document.getElementById('inv-notas').value || null
+            };
+            const method = currentEditingInvestor ? 'PUT' : 'POST';
+            const endpoint = currentEditingInvestor ? `/api/investors/${currentEditingInvestor}` : '/api/investors';
+            const result = await apiCall(endpoint, method, data);
+            if (result?.success) {
+                await loadInvestors();
+                renderInvestors();
+                renderProperties();
+                closeInvestorModal();
+            }
+        }
+
+        async function deleteInvestor() {
+            if (!confirm('¿Eliminar inversor?')) return;
+            const result = await apiCall(`/api/investors/${currentEditingInvestor}`, 'DELETE');
+            if (result?.success) {
+                await loadInvestors();
+                renderInvestors();
+                renderProperties();
+                closeInvestorModal();
+            }
+        }
+
+        // MODALS - AGENT
+        function openAgentModal(id = null) {
+            currentEditingAgent = id;
+            document.getElementById('agent-modal-title').textContent = id ? 'Editar Agente' : 'Nuevo Agente';
+            if (id) {
+                const agent = agents.find(a => a.id === id);
+                document.getElementById('agent-nombre').value = agent.nombre;
+                document.getElementById('agent-inmobiliaria').value = agent.inmobiliaria || '';
+                document.getElementById('agent-telefono').value = agent.telefono || '';
+                document.getElementById('agent-email').value = agent.email || '';
+                document.getElementById('agent-whatsapp').value = agent.whatsapp || '';
+                document.getElementById('agent-ultimo-contacto').value = agent.ultimo_contacto || '';
+                document.getElementById('agent-notas').value = agent.notas || '';
+                document.getElementById('delete-agent-btn').style.display = 'block';
+            } else {
+                document.getElementById('agentForm').reset();
+                document.getElementById('delete-agent-btn').style.display = 'none';
+            }
+            document.getElementById('agentModal').classList.add('active');
+        }
+
+        function closeAgentModal() {
+            document.getElementById('agentModal').classList.remove('active');
+            currentEditingAgent = null;
+        }
+
+        function editAgent(id) { openAgentModal(id); }
+
+        async function saveAgent(event) {
+            event.preventDefault();
+            const data = {
+                nombre: document.getElementById('agent-nombre').value,
+                inmobiliaria: document.getElementById('agent-inmobiliaria').value || null,
+                telefono: document.getElementById('agent-telefono').value || null,
+                email: document.getElementById('agent-email').value || null,
+                whatsapp: document.getElementById('agent-whatsapp').value || null,
+                ultimo_contacto: document.getElementById('agent-ultimo-contacto').value || null,
+                notas: document.getElementById('agent-notas').value || null
+            };
+            const method = currentEditingAgent ? 'PUT' : 'POST';
+            const endpoint = currentEditingAgent ? `/api/agents/${currentEditingAgent}` : '/api/agents';
+            const result = await apiCall(endpoint, method, data);
+            if (result?.success) {
+                await loadAgents();
+                renderAgents();
+                renderDashboard();
+                closeAgentModal();
+            }
+        }
+
+        async function deleteAgent() {
+            if (!confirm('¿Eliminar agente?')) return;
+            const result = await apiCall(`/api/agents/${currentEditingAgent}`, 'DELETE');
+            if (result?.success) {
+                await loadAgents();
+                renderAgents();
+                closeAgentModal();
+            }
+        }
+
+        // MODALS - PROPERTY
+        function openPropertyModal(id = null) {
+            currentEditingProperty = id;
+            document.getElementById('property-modal-title').textContent = id ? 'Editar Propiedad' : 'Nueva Propiedad';
+            if (id) {
+                const prop = properties.find(p => p.id === id);
+                document.getElementById('prop-direccion').value = prop.direccion;
+                document.getElementById('prop-ciudad').value = prop.ciudad;
+                document.getElementById('prop-tipo').value = prop.tipo;
+                document.getElementById('prop-precio').value = prop.precio;
+                document.getElementById('prop-metros').value = prop.metros;
+                document.getElementById('prop-portal').value = prop.portal || '';
+                document.getElementById('prop-enlace').value = prop.enlace || '';
+                document.getElementById('prop-agente').value = prop.agente_id || '';
+                document.getElementById('prop-estado').value = prop.estado;
+                document.getElementById('prop-inversor').value = prop.inversor_id || '';
+                document.getElementById('prop-notas').value = prop.notas || '';
+                document.getElementById('prop-resumen-contactos').value = prop.resumen_contactos || '';
+                document.getElementById('prop-alquiler').value = prop.alquiler || '';
+                document.getElementById('prop-gastos').value = prop.gastos || 0;
+                document.getElementById('prop-rentabilidad-objetivo').value = prop.rentabilidad_objetivo || 7;
+                document.getElementById('delete-property-btn').style.display = 'block';
+                if (prop.alquiler) calculateRentability();
+            } else {
+                document.getElementById('propertyForm').reset();
+                document.getElementById('prop-estado').value = 'nueva';
+                document.getElementById('prop-rentabilidad-objetivo').value = 7;
+                document.getElementById('delete-property-btn').style.display = 'none';
+                document.getElementById('rentability-results').style.display = 'none';
+            }
+            document.getElementById('propertyModal').classList.add('active');
+        }
+
+        function closePropertyModal() {
+            document.getElementById('propertyModal').classList.remove('active');
+            currentEditingProperty = null;
+        }
+
+        function editProperty(id) { openPropertyModal(id); }
+
+        async function saveProperty(event) {
+            event.preventDefault();
+            const data = {
+                direccion: document.getElementById('prop-direccion').value,
+                ciudad: document.getElementById('prop-ciudad').value,
+                tipo: document.getElementById('prop-tipo').value,
+                precio: parseFloat(document.getElementById('prop-precio').value),
+                metros: parseFloat(document.getElementById('prop-metros').value),
+                portal: document.getElementById('prop-portal').value || null,
+                enlace: document.getElementById('prop-enlace').value || null,
+                agente_id: document.getElementById('prop-agente').value || null,
+                estado: document.getElementById('prop-estado').value,
+                inversor_id: document.getElementById('prop-inversor').value || null,
+                notas: document.getElementById('prop-notas').value || null,
+                resumen_contactos: document.getElementById('prop-resumen-contactos').value || null,
+                alquiler: parseFloat(document.getElementById('prop-alquiler').value) || null,
+                gastos: parseFloat(document.getElementById('prop-gastos').value) || 0,
+                rentabilidad_objetivo: parseFloat(document.getElementById('prop-rentabilidad-objetivo').value) || 7,
+                precio_max_negociar: document.getElementById('calc-precio-max').textContent !== '-' ? 
+                    parseFloat(document.getElementById('calc-precio-max').textContent.replace(/[^0-9.-]+/g, '')) : null,
+                rentabilidad_actual: document.getElementById('calc-rentabilidad-actual').textContent !== '-' ?
+                    parseFloat(document.getElementById('calc-rentabilidad-actual').textContent.replace('%', '')) : null
+            };
+            const method = currentEditingProperty ? 'PUT' : 'POST';
+            const endpoint = currentEditingProperty ? `/api/properties/${currentEditingProperty}` : '/api/properties';
+            const result = await apiCall(endpoint, method, data);
+            if (result?.success) {
+                await loadProperties();
+                renderDashboard();
+                renderProperties();
+                closePropertyModal();
+            }
+        }
+
+        async function deleteProperty() {
+            if (!confirm('¿Eliminar propiedad?')) return;
+            const result = await apiCall(`/api/properties/${currentEditingProperty}`, 'DELETE');
+            if (result?.success) {
+                await loadProperties();
+                renderDashboard();
+                renderProperties();
+                closePropertyModal();
+            }
+        }
+
+        function calculateRentability() {
+            const precio = parseFloat(document.getElementById('prop-precio').value) || 0;
+            const alquiler = parseFloat(document.getElementById('prop-alquiler').value) || 0;
+            const gastos = parseFloat(document.getElementById('prop-gastos').value) || 0;
+            const objetivo = parseFloat(document.getElementById('prop-rentabilidad-objetivo').value) || 7;
+            
+            if (alquiler > 0 && precio > 0) {
+                const netoMensual = alquiler - gastos;
+                const netoAnual = netoMensual * 12;
+                const rentActual = (netoAnual / precio) * 100;
+                const precioMax = netoAnual / (objetivo / 100);
+                const dif = precio - precioMax;
+                
+                document.getElementById('rentability-results').style.display = 'block';
+                document.getElementById('calc-precio-max').textContent = formatCurrency(precioMax);
+                document.getElementById('calc-rentabilidad-actual').textContent = rentActual.toFixed(2) + '%';
+                document.getElementById('calc-rentabilidad-actual').style.color = rentActual >= objetivo ? '#10b981' : '#ef4444';
+                document.getElementById('calc-diferencia').textContent = formatCurrency(dif);
+                document.getElementById('calc-diferencia').style.color = dif > 0 ? '#ef4444' : '#10b981';
+                document.getElementById('calc-ingreso-neto').textContent = formatCurrency(netoAnual);
+            } else {
+                document.getElementById('rentability-results').style.display = 'none';
+            }
         }
     </script>
 </body>
